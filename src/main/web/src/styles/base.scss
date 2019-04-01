@@ -1,0 +1,114 @@
+@import './variable.scss';
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+}
+
+#app {
+  .main-container {
+    height: 100%;
+    transition: margin-left 0.28s;
+    margin-left: $sidebarOpenWidth;
+    background-color: $mainBgColor;
+    overflow: hidden;
+  }
+
+  .sidebar-container {
+    transition: width 0.28s;
+    width: $sidebarOpenWidth !important;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1001;
+
+    a {
+      display: inline-block;
+      width: 100%;
+    }
+
+    i {
+      margin-right: 10px;
+    }
+
+    .el-menu {
+      border: 0;
+      width: 100%;
+    }
+
+    .el-submenu .el-menu-item {
+      min-width: $sidebarOpenWidth;
+    }
+  }
+
+  .navbar {
+    padding: 0 20px;
+    height: $navbarHeight;
+    line-height: $navbarHeight;
+    box-sizing: border-box;
+    z-index: 2;
+
+    .userInfo {
+      float: right;
+      cursor: pointer;
+      position: relative;
+      height: $navbarHeight;
+
+      img {
+        width: 40px;
+        height: 40px;
+        margin-top: 5px;
+        border-radius: 50%;
+      }
+
+      i {
+        position: relative;
+        top: -2px;
+      }
+    }
+  }
+
+  #app-main {
+    position: relative;
+    padding: 20px;
+    height: calc(100% - #{$navbarHeight});
+    box-sizing: border-box; // 在查询列表时候的公共样式
+
+    .list-content {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      margin-bottom: 1em;
+    }
+  }
+
+  // 侧边栏收缩情况下css
+  .hideSidebar {
+
+    .sidebar-container,
+    .sidebar-container .el-menu {
+      width: $sidebarCloseWidth !important;
+    }
+
+    .main-container {
+      margin-left: $sidebarCloseWidth;
+    }
+
+    .el-menu--collapse .el-menu .el-submenu {
+      min-width: $sidebarOpenWidth;
+    }
+
+    .isRoot {
+
+      &>span,
+      &>.el-submenu__title>span,
+      &>.el-submenu__title>.el-submenu__icon-arrow {
+        display: none;
+      }
+    }
+  }
+}
